@@ -1,0 +1,623 @@
+# <#>aiogram<><> SpeedSheet
+<b>What you need, faster.<>
+
+Python library for asynchronous calls to Telegram.
+This is in no way complete but it has all the basics.
+
+Find this useful? Tell us!
+Find it is missing something? Please tell us!
+We love feedback!
+
+
+
+# Links
+
+
+### Official Site / Github
+Async library that uses aiohttp under the hood.
+
+Github:
+<l>https://github.com/aiogram/aiogram<>
+
+
+
+### Telegram SpeedSheet
+
+<l>/s/telegram<>
+
+
+
+### Examples:
+
+Github Examples:
+<l>https://github.com/aiogram/aiogram/tree/dev-2.x/examples<>
+
+
+
+# Library
+
+
+## Install Library - pip
+
+<cb>pip install aiogram<>
+@
+@ command, commandline
+
+
+
+## Install Library - pip requirements.txt
+
+requirements.txt:
+
+<cb>aiogram<>
+
+
+Command:
+
+<cb>pip install -r requiremets.txt<>
+@
+@ command, commandline
+
+
+
+## Program - Import
+
+<cb>import aiogram<>
+
+
+
+# How To
+@
+@ how-to
+
+
+
+### Bot - Connect / Start
+
+<cb>from aiogram import Bot
+
+<v>bot<> = Bot (token = <v>BOT_TOKEN<>, parse_mode = ParseMode.HTML)<>
+
+
+
+### Bot - Close
+
+<cb>await <v>bot<>.close()<>
+@
+@ .close(), end, exit
+
+
+
+### Bot - Get Bot Info
+
+<cb>= <v>bot_1<>.get_me()<>
+
+
+Returns: <c>aiogram.types.user.User<>
+
+
+Returns the user object for bot 1.
+
+
+Example:
+
+<cb><v>bot_user<> = <v>bot_1<>.get_me()
+
+print("My name is", <v>bot_1<>.first_name)
+print("My id is", <v>bot_1<>.id)<>
+
+
+
+### Bot - Poll For All Messages
+
+<cb>from aiogram import Dispatcher
+
+
+async def <v>process_message<>(message):
+	<#># Check message.text.<>
+	<v>...<>
+
+
+<v>dispatcher<> = Dispatcher(<v>bot_1<>)
+<v>dispatcher<>.register_message_handler(<v>process_message<>)
+await <v>dispatcher<>.start_polling()<>
+
+
+
+### Bot - Poll For Commands
+
+<cb>from aiogram import Dispatcher
+
+
+async def <v>process_message<>(message):
+	<#># Check message.text for command.<>
+	<v>...<>
+
+
+<v>dispatcher<> = Dispatcher(<v>bot_1<>)
+<v>dispatcher<>.register_message_handler(
+		<v>process_message<>,
+		commands {'<v>command_1<>', '<v>command_2<>', <v>...<>}
+await <v>dispatcher<>.start_polling()<>
+
+
+Example:
+
+<cb>from aiogram import Dispatcher
+
+
+async def <v>process_message<>(message):
+	if message.text = '/start':
+		message.answer('Starting.')
+	else:
+		message.answer('Stopping.')
+
+
+<v>dispatcher<> = Dispatcher(<v>bot_1<>)
+<v>dispatcher<>.register_message_handler(
+		<v>process_message<>,
+		commands {'<v>start<>', '<v>stop<>'}
+await <v>dispatcher<>.start_polling()<>
+
+
+
+### User - Send Message
+
+Send:
+
+<cb>await <v>bot_1<>.send_message(<v>user_id<>, <v>message<>)<>
+
+Set Format Type:
+
+<cb>from aiogram.types import ParseMode
+
+await <v>bot_1<>.send_message(<v>user_id<>, <v>message<>, parse_mode=types.ParseMode.<v>mode<>)<>
+
+Capture Details:
+
+<cb><v>message<> = await <v>bot_1<>.send_message(<v>user_id<>, <v>message<>)<>
+
+
+Returns: <c>aiogram.types.message.Message<>
+
+
+Example:
+
+<cb>await <v>bot_1<>.send_message(1234, "<v>Test message.<>", parse_mode = ParseMode.HTML)<>
+@
+@ bot.send_message(), .send_message()
+
+
+
+### User - Send Audio
+
+Send Audio:
+
+<cb>with open(<v>audio_file_path<>, 'rb') as <v>file<>:
+	<v>await bot<>.send_audio(<v>user_id<>, <v>file<>)<>
+
+With Caption:
+
+<cb><v>...<>
+<v>message<> = await <v>bot_1<>.send_audio(<v>user_id<>, <v>file<>, '<v>caption<>')<>
+
+
+Get Result:
+
+<cb><v>...<>
+<v>message<> = await <v>bot_1<>.send_audio(<v>user_id<>, <v>message<>)<>
+
+
+Returns: <c>aiogram.types.message.Message<>
+@
+@ bot.send_audio(), .send_audio()
+
+
+
+### User - Send Photo
+
+Send Photo:
+
+<cb>with open(<v>photo_file_path<>, 'rb') as <v>file<>:
+	<v>await bot<>.send_photo(<v>user_id<>, <v>file<>)<>
+
+With Caption:
+
+<cb><v>...<>
+<v>message<> = await <v>bot_1<>.send_photo(<v>user_id<>, <v>file<>, '<v>caption<>')<>
+
+
+Get Result:
+
+<cb><v>...<>
+<v>message<> = await <v>bot_1<>.send_photo(<v>user_id<>, <v>message<>)<>
+
+
+Returns: <c>aiogram.types.message.Message<>
+@
+@ bot.send_photo(), .send_photo()
+
+
+
+### User - Send Photo / Animated Gif
+
+Send Photo:
+
+<cb>with open(<v>photo_file_path<>, 'rb') as <v>file<>:
+	<v>await bot<>.send_animation(<v>user_id<>, <v>file<>)<>
+
+With Caption:
+
+<cb><v>...<>
+<v>message<> = await <v>bot_1<>.send_animation(<v>user_id<>, <v>file<>, '<v>caption<>')<>
+
+
+Get Result:
+
+<cb><v>...<>
+<v>message<> = await <v>bot_1<>.send_animation(<v>user_id<>, <v>message<>)<>
+
+
+Returns: <c>aiogram.types.message.Message<>
+@
+@ bot.send_animation(), .send_animation(), .gif
+
+
+
+### Message - Reply
+
+<cb>await <v>message_1<>.answer(<v>reply_message<>)<>
+
+Set Format Type:
+
+<cb>from aiogram.types import ParseMode
+
+await await <v>message_1<>.answer(<v>reply_message<>, parse_mode=types.ParseMode.<v>mode<>)<>
+
+
+Responds to message but doesn't include original request.
+@
+@ message.answer(), .answer()
+
+
+
+### Message - Reply / Quote Original
+
+<cb>await <v>message_1<>.reply(<v>reply_message<>)<>
+
+Set Format Type:
+
+<cb>from aiogram.types import ParseMode
+
+await await <v>message_1<>.reply(<v>reply_message<>, parse_mode=types.ParseMode.<v>mode<>)<>
+
+
+Responds to message displaying a copy of the original request.
+@
+@ message.reply(), .reply(), 
+
+
+
+### Message - Reply With Audio
+
+<cb>with open(<v>audio_file_path<>, 'rb') as <v>file<>:
+	await <v>message_1<>.answer_audio(<v>file<>)<>
+
+
+Responds to message but doesn't include original request.
+@
+@ message.answer_audio(), .answer_audio()
+
+
+
+### Message - Reply With Audio / Quote Original
+
+<cb>with open(<v>audio_file_path<>, 'rb') as <v>file<>:
+	await <v>message_1<>.reply_audio(<v>file<>)<>
+
+
+Responds to message displaying a copy of the original request.
+@
+@ message.reply_audio(), .reply_audio()
+
+
+
+### Message - Reply With Photo
+
+<cb>with open(<v>phot_file_path<>, 'rb') as <v>file<>:
+	await <v>message_1<>.answer_photo(<v>file<>)<>
+
+
+Responds to message but doesn't include original request.
+@
+@ message.answer_photo(), .answer_photo()
+
+
+
+### Message - Reply With Photo / Quote Original
+
+<cb>with open(<v>photo_file_path<>, 'rb') as <v>file<>:
+	await <v>message_1<>.reply_photo(<v>file<>)<>
+
+
+Responds to message displaying a copy of the original request.
+@
+@ message.reply_photo(), .reply_photo()
+
+
+
+### Message - Reply With Animated Gif
+
+<cb>with open(<v>phot_file_path<>, 'rb') as <v>file<>:
+	await <v>message_1<>.answer_animation(<v>file<>)<>
+
+
+Responds to message but doesn't include original request.
+@
+@ message.answer_animation(), .answer_animation(), .gif
+
+
+
+### Message - Reply With Animated Gif / Quote Original
+
+<cb>with open(<v>photo_file_path<>, 'rb') as <v>file<>:
+	await <v>message_1<>.reply_animation(<v>file<>)<>
+
+
+Responds to message displaying a copy of the original request.
+@
+@ message.reply_animation(), .reply_animation(), .gif
+
+
+
+### Call - Handle Error
+
+<cb>from aiogram.utils.exceptions import *
+
+
+try:
+
+	await <v>bot_1<>.<v>command<>()
+
+except RetryAfter as e:
+
+	<#># Flood limit is exceeded. Sleep {e.timeout} seconds.<>
+
+	await asyncio.sleep(e.timeout)
+
+	await <v>bot_1<>.<v>command<>()	<#># Retry<>
+
+except BotBlocked:
+
+	<#># Blocked by User<>
+
+except ChatNotFound:
+
+	<#># Invalid User ID<>
+
+except UserDeactivated:
+
+	<#># User is Deactivated<>
+
+except TelegramAPIError:
+
+	<#># API Failed<><>
+@
+@ try except, timeout
+@ exception.retryafter, retryafter
+@ exception.botblocked, botblocked
+@ exception.chatnotfound, chatnotfound
+@ exception.userdeactivated, userdeactivated
+@ exception.telegramapierror, telegramapierror
+
+
+# Message
+
+
+### Message - Get Message ID
+
+<cb>= <v>message_1<>.message_id<>
+
+
+Returns: <c>int<>
+
+
+
+### Message - Get Chat ID
+
+<cb>= <v>message_1<>.chat.id<>
+
+
+Returns: <c>int<>
+
+
+
+### Message - Get Sent Time
+
+<cb>= <v>message_1<>.date<>
+
+
+Returns Unix Time / Epoch Time
+(Number of seconds from 1970-01-01)
+
+
+
+### Message - Get Text
+
+<cb>= <v>message_1<>.text<>
+@
+@ body, contents
+
+
+
+### Message - From User
+
+<cb>= <v>message_1<>.from_user<>
+
+
+Returns: User Data (dict?)
+
+
+
+### Message - From User Name
+
+<cb>= <v>message_1<>.from_user.first_name<>
+
+<cb>= <v>message_1<>.from_user.last_name<>
+
+
+
+### Message - From User ID
+
+<cb>= <v>message_1<>.from_user.id<>
+
+
+Returns: <c>int<>
+
+
+
+### Message - From User - Is Bot?
+
+<cb>= <v>message_1<>.from_user.is_bot<>
+
+
+
+# ParseMode
+@
+@ parse mode
+
+
+Class:
+
+<cb>aiogram.types.ParseMode<>
+
+Import:
+
+<cb>from aiogram.types import ParseMode<>
+
+
+
+### ParseMode - Set Default
+
+Set when starting your bot.
+
+
+
+### ParseMode - HTML
+
+<cb>from aiogram.type import parseMode
+
+= type.parse.HTML<>
+
+
+See Telagram Formats:
+
+<card><l "/s/telegram?search=format+ref&select=FdBE">Telegram SpeedSheet - HTML Format Reference<><>
+
+
+
+### ParseMode - MARKDOWN
+
+<cb>from aiogram import type
+
+= type.parse.MARKDOWN<>
+
+
+See Telagram Formats:
+
+<card><l "/s/telegram?search=format+ref&select=F3XC">Telegram SpeedSheet - Markdown Format Reference<><>
+
+
+
+### ParseMode - MARKDOWN_V2
+
+<cb>from aiogram import type
+
+= type.parse.MARKDOWN_V2<>
+
+
+See Telagram Formats:
+
+<card><l "/s/telegram?search=format+ref&select=F3XC">Telegram SpeedSheet - Markdown Format Reference<><>
+
+
+# User
+
+Class:
+
+<cb>aiogram.types.user.User<>
+
+Import:
+
+<cb>from aiogram.types.user import User<>
+
+
+
+### User - ID
+
+<cb>= <v>user_1<>.id<>
+
+
+Returns: <c>int<>
+
+
+
+### User - Name
+
+<cb>= <v>user_1<>.first_name<>
+
+<cb>= <v>user_1<>.last_name<>
+
+For Bot (First Name Only):
+
+<cb>= <v>user_1<>.first_name<>
+
+
+
+### User - Is a Bot?
+
+<cb>= <v>user_1<>.is_bot<>
+
+
+
+### User - User Name
+
+<cb>= <v>user_1<>.username<>
+@
+@ username, user_name
+
+
+
+# Reference - Telegram APIs
+
+
+### Telegram - APIs
+
+<card><l>https://core.telegram.org/api<><>
+
+
+
+### Telegram - APIS - Bot
+
+<card><l>https://core.telegram.org/bots/api#available-types<><>
+
+
+
+### Telegram - Help - Bots
+
+<cb><l>https://core.telegram.org/bots<><>
+
+
+
+# Acronyms
+
+
+# Terms
+
+
+### User ID
+
+The integer id that identifies a user.
+
+
+
