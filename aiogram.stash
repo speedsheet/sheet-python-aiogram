@@ -74,15 +74,25 @@ Command:
 
 ### Bot - Connect / Start
 
+<cb>= Bot(token = <v>BOT_TOKEN<>)<>
+
+Full Usage:
+
 <cb>from aiogram import Bot
 
-<v>bot<> = Bot (token = <v>BOT_TOKEN<>, parse_mode = ParseMode.HTML)<>
+<v>bot<> = Bot(token = <v>BOT_TOKEN<>, parse_mode = ParseMode.HTML)<>
+
+
+Creates a connection to a bot.
 
 
 
 ### Bot - Close
 
 <cb>await <v>bot<>.close()<>
+
+
+Closes the connection to a bot.
 @
 @ .close(), end, exit
 
@@ -110,21 +120,32 @@ print("My id is", <v>bot_1<>.id)<>
 
 ### Bot - Poll For All Messages
 
+<cb><v>dispatcher<>.register_message_handler(<v>handle_message<>)<>
+
 <cb>from aiogram import Dispatcher
 
 
-async def <v>process_message<>(message):
+async def <v>handle_message<>(message):
 	<#># Check message.text.<>
 	<v>...<>
 
 
 <v>dispatcher<> = Dispatcher(<v>bot_1<>)
-<v>dispatcher<>.register_message_handler(<v>process_message<>)
+<v>dispatcher<>.register_message_handler(<v>handle_message<>)
 await <v>dispatcher<>.start_polling()<>
+
+
+Listens to all messages on bot channels.
+
+To poll for all messages, pass a callback handler to register_message_handler().
 
 
 
 ### Bot - Poll For Commands
+
+<cb><v>dispatcher<>.register_message_handler(
+		<v>process_message<>,
+		commands {'<v>command_1<>', '<v>command_2<>', <v>...<>}<>
 
 <cb>from aiogram import Dispatcher
 
@@ -139,6 +160,11 @@ async def <v>process_message<>(message):
 		<v>process_message<>,
 		commands {'<v>command_1<>', '<v>command_2<>', <v>...<>}
 await <v>dispatcher<>.start_polling()<>
+
+
+Handles incoming bot commands (Something that leads with a '/').
+
+Register a callback function with a list of trigger commands to register_message_handler().
 
 
 Example:
@@ -163,7 +189,9 @@ await <v>dispatcher<>.start_polling()<>
 
 ### User - Send Message
 
-Send:
+<cb>= await <v>bot_1<>.send_message(<v>user_id<>, <v>message<>)<>
+
+Send In Default Format:
 
 <cb>await <v>bot_1<>.send_message(<v>user_id<>, <v>message<>)<>
 
@@ -177,8 +205,10 @@ Capture Details:
 
 <cb><v>message<> = await <v>bot_1<>.send_message(<v>user_id<>, <v>message<>)<>
 
-
 Returns: <c>aiogram.types.message.Message<>
+
+
+Sends a message to a user or group.
 
 
 Example:
@@ -191,74 +221,79 @@ Example:
 
 ### User - Send Audio
 
+<cb>= <v>await bot<>.send_audio(<v>user_id<>, <v>file<>)<>
+
 Send Audio:
 
 <cb>with open(<v>audio_file_path<>, 'rb') as <v>file<>:
 	<v>await bot<>.send_audio(<v>user_id<>, <v>file<>)<>
 
-With Caption:
+Send With Caption:
 
-<cb><v>...<>
-<v>message<> = await <v>bot_1<>.send_audio(<v>user_id<>, <v>file<>, '<v>caption<>')<>
-
+<cb>await <v>bot_1<>.send_audio(<v>user_id<>, <v>file<>, '<v>caption<>')<>
 
 Get Result:
 
-<cb><v>...<>
-<v>message<> = await <v>bot_1<>.send_audio(<v>user_id<>, <v>message<>)<>
-
+<cb><v>message<> = await <v>bot_1<>.send_audio(<v>user_id<>, <v>message<>)<>
 
 Returns: <c>aiogram.types.message.Message<>
+
+
+Sends an audio file to a user or group.
 @
 @ bot.send_audio(), .send_audio()
 
 
 
-### User - Send Photo
+### User - Send Imagce
 
-Send Photo:
+<cb><v>await bot<>.send_photo(<v>user_id<>, <v>file<>)<>
+
+Send Imacge:
 
 <cb>with open(<v>photo_file_path<>, 'rb') as <v>file<>:
 	<v>await bot<>.send_photo(<v>user_id<>, <v>file<>)<>
 
-With Caption:
+Send With Caption:
 
-<cb><v>...<>
-<v>message<> = await <v>bot_1<>.send_photo(<v>user_id<>, <v>file<>, '<v>caption<>')<>
-
+<cb>await <v>bot_1<>.send_photo(<v>user_id<>, <v>file<>, '<v>caption<>')<>
 
 Get Result:
 
-<cb><v>...<>
-<v>message<> = await <v>bot_1<>.send_photo(<v>user_id<>, <v>message<>)<>
-
+<cb><v>message<> = await <v>bot_1<>.send_photo(<v>user_id<>, <v>message<>)<>
 
 Returns: <c>aiogram.types.message.Message<>
+
+
+Sends a picture to a user or group.
+
+Will not work for animated image types.
 @
-@ bot.send_photo(), .send_photo()
+@ bot.send_photo(), .send_photo(), photo
 
 
 
-### User - Send Photo / Animated Gif
+### User - Send Animated Image / GIF
 
-Send Photo:
+<cb><v>await bot<>.send_animation(<v>user_id<>, <v>file<>)<>
+
+Send Animated Image:
 
 <cb>with open(<v>photo_file_path<>, 'rb') as <v>file<>:
 	<v>await bot<>.send_animation(<v>user_id<>, <v>file<>)<>
 
-With Caption:
+Send With Caption:
 
-<cb><v>...<>
-<v>message<> = await <v>bot_1<>.send_animation(<v>user_id<>, <v>file<>, '<v>caption<>')<>
-
+<cb>await <v>bot_1<>.send_animation(<v>user_id<>, <v>file<>, '<v>caption<>')<>
 
 Get Result:
 
-<cb><v>...<>
-<v>message<> = await <v>bot_1<>.send_animation(<v>user_id<>, <v>message<>)<>
-
+<cb><v>message<> = await <v>bot_1<>.send_animation(<v>user_id<>, <v>message<>)<>
 
 Returns: <c>aiogram.types.message.Message<>
+
+
+Sends an animated image to the user or group.
 @
 @ bot.send_animation(), .send_animation(), .gif
 
@@ -505,7 +540,7 @@ Set when starting your bot.
 
 ### ParseMode - HTML
 
-<cb>from aiogram.type import parseMode
+<cb>from aiogram import type
 
 = type.parse.HTML<>
 
