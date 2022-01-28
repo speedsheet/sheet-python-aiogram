@@ -4,11 +4,6 @@
 Python library for asynchronous calls to Telegram.
 This is in no way complete but it has all the basics.
 
-Find this useful? Tell us!
-Find it is missing something? Please tell us!
-We love feedback!
-
-
 
 # Links
 
@@ -245,11 +240,11 @@ Sends an audio file to a user or group.
 
 
 
-### User - Send Imagce
+### User - Send Image
 
 <cb><v>await bot<>.send_photo(<v>user_id<>, <v>file<>)<>
 
-Send Imacge:
+Send Image:
 
 <cb>with open(<v>photo_file_path<>, 'rb') as <v>file<>:
 	<v>await bot<>.send_photo(<v>user_id<>, <v>file<>)<>
