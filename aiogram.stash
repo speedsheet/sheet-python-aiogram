@@ -1,25 +1,44 @@
 # <#>aiogram<><> SpeedSheet
-<b>What you need, faster.<>
+<b>Find it faster.<>
 
-Python library for asynchronous calls to Telegram.
-This is in no way complete but it has all the basics.
+This is an interactive <b>aiogram<> cheat sheet. aiogram is a Python asynchronous library for communicating with Telegram (uses aiohttp under the hood). Use the search to instantly get answers.
 
 
-# Links
+<table><col><b>Basics<>
+
+<*><link "?q=install-only">Install<><>
+
+<*><link "?q=bot-commands">Bot Commands<>
+<link "?q=send-commands">Send Commands<>
+<link "?q=reply-commands">Reply Commands<>
+<link "?q=parsemode-only">Parse Mode<><>
+
+<*><link "?q=message-properties">Message Properties<>
+<link "?q=user-properties">User Properties<><><><col>	<><col><b>Reference<>
+
+<*><link "?q=online-docs">Online Document<>
+<link "?q=telegram-apis">Telegram APIs<>
+<link "?q=terms-only">Terms<><>
+
+
+<b>Related Sheets<>
+
+<*><link "aiohttp">aiohttp<>
+<link "python">Python<>
+<link "telegram">Telegram<><><><>
+
+
+# Online Documents
+@
+@ online-docs-only, docs-only
 
 
 ### Official Site / Github
-Async library that uses aiohttp under the hood.
-
-Github:
 <l>https://github.com/aiogram/aiogram<>
 
 
-
 ### Telegram SpeedSheet
-
-<l>/s/telegram<>
-
+<l>telegram<>
 
 
 ### Examples:
@@ -32,15 +51,15 @@ Github Examples:
 # Library
 
 
-## Install Library - pip
+### Install Library - pip
 
 <cb>pip install aiogram<>
 @
-@ command, commandline
+@ command, commandline, install-only
 
 
 
-## Install Library - pip requirements.txt
+### Install Library - pip requirements.txt
 
 requirements.txt:
 
@@ -51,20 +70,19 @@ Command:
 
 <cb>pip install -r requiremets.txt<>
 @
-@ command, commandline
+@ command, commandline, install-only
 
 
 
-## Program - Import
+### Program - Import
 
 <cb>import aiogram<>
 
 
 
-# How To
+# Bot Commands
 @
-@ how-to
-
+@ bot-only, bot-commands-only
 
 
 ### Bot - Connect / Start
@@ -182,7 +200,13 @@ await <v>dispatcher<>.start_polling()<>
 
 
 
-### User - Send Message
+# Message - Send Commands
+@
+@ send-only, send-message-only, message-send-only, send-command-only, send-commands-only
+@ new, create
+
+
+### Message - Send Text
 
 <cb>= await <v>bot_1<>.send_message(<v>user_id<>, <v>message<>)<>
 
@@ -214,7 +238,7 @@ Example:
 
 
 
-### User - Send Audio
+### Message - Send Audio
 
 <cb>= <v>await bot<>.send_audio(<v>user_id<>, <v>file<>)<>
 
@@ -240,7 +264,7 @@ Sends an audio file to a user or group.
 
 
 
-### User - Send Image
+### Message - Send Image
 
 <cb><v>await bot<>.send_photo(<v>user_id<>, <v>file<>)<>
 
@@ -268,7 +292,7 @@ Will not work for animated image types.
 
 
 
-### User - Send Animated Image / GIF
+### Message - Send Animated Image / GIF
 
 <cb><v>await bot<>.send_animation(<v>user_id<>, <v>file<>)<>
 
@@ -292,6 +316,12 @@ Sends an animated image to the user or group.
 @
 @ bot.send_animation(), .send_animation(), .gif
 
+
+
+# Message - Reply Commands
+@
+@ message-only, reply-only, message-reply-only, reply-message
+@ reply-command-only, reply-commands-only
 
 
 ### Message - Reply
@@ -441,7 +471,9 @@ except TelegramAPIError:
 @ exception.telegramapierror, telegramapierror
 
 
-# Message
+# Message - Properties
+@
+@ message-properties-only, property-only, properties-only
 
 
 ### Message - Get Message ID
@@ -512,9 +544,65 @@ Returns: <c>int<>
 
 
 
+# User Properties
+@
+@ user-property-only, user-properties-only, property-only, properties-only
+
+
+### User - Import
+
+Class:
+
+<cb>aiogram.types.user.User<>
+
+Import:
+
+<cb>from aiogram.types.user import User<>
+
+
+
+### User - ID
+
+<cb>= <v>user_1<>.id<>
+
+
+Returns: <c>int<>
+
+
+
+### User - Name
+
+<cb>= <v>user_1<>.first_name<>
+
+<cb>= <v>user_1<>.last_name<>
+
+For Bot (First Name Only):
+
+<cb>= <v>user_1<>.first_name<>
+
+
+
+### User - Is a Bot?
+
+<cb>= <v>user_1<>.is_bot<>
+
+
+
+### User - User Name
+
+<cb>= <v>user_1<>.username<>
+@
+@ username, user_name
+
+
+
 # ParseMode
 @
-@ parse mode
+@ parse mode, parsemode-only
+
+
+
+### ParseMode - Import
 
 
 Class:
@@ -571,54 +659,10 @@ See Telagram Formats:
 <card><l "/s/telegram?search=format+ref&select=F3XC">Telegram SpeedSheet - Markdown Format Reference<><>
 
 
-# User
-
-Class:
-
-<cb>aiogram.types.user.User<>
-
-Import:
-
-<cb>from aiogram.types.user import User<>
-
-
-
-### User - ID
-
-<cb>= <v>user_1<>.id<>
-
-
-Returns: <c>int<>
-
-
-
-### User - Name
-
-<cb>= <v>user_1<>.first_name<>
-
-<cb>= <v>user_1<>.last_name<>
-
-For Bot (First Name Only):
-
-<cb>= <v>user_1<>.first_name<>
-
-
-
-### User - Is a Bot?
-
-<cb>= <v>user_1<>.is_bot<>
-
-
-
-### User - User Name
-
-<cb>= <v>user_1<>.username<>
-@
-@ username, user_name
-
-
 
 # Reference - Telegram APIs
+@
+@ online-docs-only, docs-only, telegram-apis-only
 
 
 ### Telegram - APIs
@@ -639,10 +683,9 @@ For Bot (First Name Only):
 
 
 
-# Acronyms
-
-
 # Terms
+@
+@ terms-only
 
 
 ### User ID
